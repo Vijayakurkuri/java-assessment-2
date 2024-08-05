@@ -1,0 +1,35 @@
+import java.util.Scanner;
+class NumberPrinter extends Thread {
+    private int start;
+    private int end;
+
+    public NumberPrinter(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+    public void run() {
+        for (int i = start; i <= end; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(10); 
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted.");
+            }
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Press Enter to start the first thread (prints 1 to 50): ");
+        scanner.nextLine();
+        Thread thread1 = new NumberPrinter(1, 50);
+        thread1.start();
+        System.out.print("Press Enter to start the second thread (prints 51 to 100): ");
+        scanner.nextLine();
+        Thread thread2 = new NumberPrinter(51, 100);
+        thread2.start();
+
+        scanner.close();
+    }
+}

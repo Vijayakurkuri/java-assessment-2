@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        System.out.print("Enter the number of integers: ");
+        int n = scanner.nextInt();
+
+        System.out.println("Enter the integers:");
+        for (int i = 0; i < n; i++) {
+            int number = scanner.nextInt();
+            numbers.add(number);
+        }
+
+        ArrayList<Integer> uniqueNumbers = new ArrayList<>(new HashSet<>(numbers));
+
+        System.out.println("ArrayList after removing duplicates:");
+        for (int number : uniqueNumbers) {
+            System.out.println(number);
+        }
+
+        scanner.close();
+    }
+}

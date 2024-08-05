@@ -1,0 +1,37 @@
+import java.util.Scanner;
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+class Person {
+    private int age;
+    public Person(int age) throws InvalidAgeException {
+        setAge(age);
+    }
+    public void setAge(int age) throws InvalidAgeException {
+        if (age < 0 || age > 150) {
+            throw new InvalidAgeException("Age must be between 0 and 150.");
+        }
+        this.age = age;
+    }
+    public int getAge() {
+        return age;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter the age: ");
+            int age = scanner.nextInt();
+            Person person = new Person(age);
+            System.out.println("Age set to: " + person.getAge());
+        } catch (InvalidAgeException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+            System.out.println("Age input operation is complete.");
+        }
+    }
+}

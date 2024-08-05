@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class ReadFileLineByLine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the file path
+        System.out.print("Enter the file path: ");
+        String filePath = scanner.nextLine();
+
+        BufferedReader reader = null;
+
+        try {
+            // Create a BufferedReader to read the file
+            reader = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            // Read and print each line
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            // Handle any IO exceptions
+            System.err.println("An error occurred while reading the file: " + e.getMessage());
+        } finally {
+            // Close the BufferedReader
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                System.err.println("An error occurred while closing the reader: " + e.getMessage());
+            }
+
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}

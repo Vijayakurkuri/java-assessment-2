@@ -1,0 +1,61 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class WriteArrayToFile {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the file path
+        System.out.print("Enter the file path: ");
+        String filePath = scanner.nextLine();
+
+        // Prompt the user to enter the number of strings
+        System.out.print("Enter the number of strings: ");
+        int n = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        // Create an ArrayList to store the strings
+        ArrayList<String> lines = new ArrayList<>();
+
+        // Prompt the user to enter the strings
+        System.out.println("Enter the strings:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("String " + (i + 1) + ": ");
+            String line = scanner.nextLine();
+            lines.add(line);
+        }
+
+        BufferedWriter writer = null;
+
+        try {
+            // Create a BufferedWriter to write to the file
+            writer = new BufferedWriter(new FileWriter(filePath));
+
+            // Write each string from the array to the file
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine(); // Add a new line after each string
+            }
+
+            System.out.println("Array of strings written to file successfully.");
+        } catch (IOException e) {
+            // Handle any IO exceptions
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        } finally {
+            // Close the BufferedWriter
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println("An error occurred while closing the writer: " + e.getMessage());
+            }
+
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}

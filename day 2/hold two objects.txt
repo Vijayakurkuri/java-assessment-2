@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+class Pair<T, U> {
+    private T first;
+    private U second;
+
+    public Pair(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public T getFirst() {
+        return first;
+    }
+
+    public void setFirst(T first) {
+        this.first = first;
+    }
+
+    public U getSecond() {
+        return second;
+    }
+
+    public void setSecond(U second) {
+        this.second = second;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first object (String): ");
+        String first = scanner.nextLine();
+
+        System.out.print("Enter the second object (Integer): ");
+        int second = scanner.nextInt();
+
+        Pair<String, Integer> pair = new Pair<>(first, second);
+
+        System.out.println("First object: " + pair.getFirst());
+        System.out.println("Second object: " + pair.getSecond());
+
+        scanner.nextLine(); 
+        System.out.print("Enter a new first object (String): ");
+        first = scanner.nextLine();
+        System.out.print("Enter a new second object (Integer): ");
+        second = scanner.nextInt();
+
+        pair.setFirst(first);
+        pair.setSecond(second);
+
+        System.out.println("Updated first object: " + pair.getFirst());
+        System.out.println("Updated second object: " + pair.getSecond());
+
+        // Close the scanner
+        scanner.close();
+    }
+}
